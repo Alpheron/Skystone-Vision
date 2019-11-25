@@ -20,7 +20,7 @@ COLORS = np.random.uniform(0, 255, size=(len(CLASSES), 3))
 
 # load our serialized model from disk
 print("[INFO] loading model...")
-net = cv2.dnn.readNetFromTensorflow('/Users/Tinku/Skystone-Vision/Skystone-Rev2/PB_file/model.pb', '/Users/Tinku/Skystone-Vision/Skystone-Rev2/PBtxt/model.pbtxt')
+net = cv2.dnn.readNetFromTensorflow('/Users/Tinku/Skystone-Vision/SkystoneVision/PB-File/model.pb', '/Users/Tinku/Skystone-Vision/SkystoneVision/pbtxt/protobuf.pbtxt')
 #
 #/model.pb
 #.pbtxt
@@ -60,7 +60,7 @@ while True:
 			# extract the index of the class label from the
 			# `detections`, then compute the (x, y)-coordinates of
 			# the bounding box for the object
-			idx = int(detections[0, 0, i, 1])
+			idx = int(detections[0, 0, i, 2])
 			box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
 			(startX, startY, endX, endY) = box.astype("int")
 

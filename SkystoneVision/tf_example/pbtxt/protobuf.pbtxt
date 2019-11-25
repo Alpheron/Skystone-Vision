@@ -22,6 +22,7 @@ node {
   name: "Preprocessor/mul"
   op: "Mul"
   input: "Preprocessor/mul/x"
+  input: "tf_example"
 }
 node {
   name: "Preprocessor/sub"
