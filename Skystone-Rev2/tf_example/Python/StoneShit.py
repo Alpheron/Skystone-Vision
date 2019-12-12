@@ -9,7 +9,7 @@ import cv2
 
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
-ap.add_argument("-c", "--confidence", type=float, default=0.90,
+ap.add_argument("-c", "--confidence", type=float, default=0.80,
 	help="minimum probability to filter weak detections")
 args = vars(ap.parse_args())
 
@@ -20,7 +20,7 @@ COLORS = np.random.uniform(0, 255, size=(len(CLASSES), 3))
 
 # load our serialized model from disk
 print("[INFO] loading model...")
-net = cv2.dnn.readNetFromTensorflow('/Users/Tinku/Skystone-Vision/Skystone-Rev2/tf_example/PB_file/model.pb', '/Users/Tinku/Skystone-Vision/Skystone-Rev2/tf_example/PBtxt/model.pbtxt')
+net = cv2.dnn.readNetFromTensorflow('/Users/Tinku/Desktop/Robotics Shit/Skystone-Vision/Skystone-Rev2/tf_example/PB_file/model.pb', '/Users/Tinku/Desktop/Robotics Shit/Skystone-Vision/Skystone-Rev2/tf_example/PBtxt/model.pbtxt')
 #
 #/model.pb
 #.pbtxt
