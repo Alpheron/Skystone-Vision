@@ -1,0 +1,2 @@
+model_checkpoint_path: "/sly_task_data/results/00000000/model_weights/model.ckpt"
+all_model_checkpoint_paths: "/sly_task_data/results/00000000/model_weights/model.ckpt"
