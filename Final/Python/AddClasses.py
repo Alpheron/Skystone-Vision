@@ -30,7 +30,7 @@ l.sort(reverse=True)
 for i in l[:6] :
     #print(i,objects_dict[i])
     cv.rectangle(img, (int(objects_dict[i][0]), int(objects_dict[i][1])), (int(objects_dict[i][2]), int(objects_dict[i][3])), (23, 230, 210), thickness=5)
-    print(Stonetype)
+    #print(Stonetype)
     #cv.putText(img, Stonetype, (int(objects_dict[i][0]), int(objects_dict[i][1])), cv.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 2, cv.LINE_AA)
 
 
