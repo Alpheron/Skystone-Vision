@@ -1,7 +1,7 @@
 import cv2 as cv
 from collections import defaultdict
 cvNet = cv.dnn.readNetFromTensorflow('/Users/Tinku/Desktop/RoboticsShit/Skystone-Vision/Final/image_tensor/PB_file/model.pb', '/Users/Tinku/Desktop/RoboticsShit/Skystone-Vision/Final/image_tensor/Pbtxt/model.pbtxt')
-img = cv.imread('/Users/Tinku/Desktop/TestStuff/pls.jpeg')
+img = cv.imread('/Users/Tinku/Desktop/TestStuff/work.jpeg')
 
 rows = img.shape[0]
 cols = img.shape[1]
@@ -33,9 +33,9 @@ for i in l[:6] :
     elif objects_dict[i][4] == 1.0:
         detectedObject = "Blue Foundation"
     cv.rectangle(img, (int(objects_dict[i][0]), int(objects_dict[i][1])), (int(objects_dict[i][2]), int(objects_dict[i][3])), (23, 230, 210), thickness=5)
-    #print(detectedObject)
     cv.putText(img, detectedObject, (int(objects_dict[i][0]), int(objects_dict[i][1])), cv.FONT_HERSHEY_SIMPLEX, 5, (0,0,0), 10, cv.LINE_AA)
 
-cv.imshow('img', img)
+    cv.imshow('img', img)
+    cv.waitKey()
 #print(numOfRect)
-cv.waitKey()
+
