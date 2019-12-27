@@ -38,7 +38,7 @@ while(True):
         elif objects_dict[i][4] == 1.0:
             detectedObject = "Blue Foundation"
         cv.rectangle(img, (int(objects_dict[i][0]), int(objects_dict[i][1])), (int(objects_dict[i][2]), int(objects_dict[i][3])), (23, 230, 210), thickness=5)
-        cv.putText(img, detectedObject, (int(objects_dict[i][0]), int(objects_dict[i][1])), cv.FONT_HERSHEY_SIMPLEX, 2, (0,0,0), 10, cv.LINE_AA)
+        cv.putText(img, detectedObject, (int(objects_dict[i][0]), int(objects_dict[i][1])), cv.FONT_HERSHEY_SIMPLEX, 5, (0,0,0), 10, cv.LINE_AA)
         print(i, objects_dict)
     cv.imshow('img', img)
     cv.waitKey(1)

@@ -1,5 +1,4 @@
 import cv2 as cv
-from collections import defaultdict
 cvNet = cv.dnn.readNetFromTensorflow('/Users/Tinku/Desktop/RoboticsShit/Skystone-Vision/Final/image_tensor/PB_file/model.pb', '/Users/Tinku/Desktop/RoboticsShit/Skystone-Vision/Final/image_tensor/Pbtxt/model.pbtxt')
 img = cv.imread('/Users/Tinku/Desktop/TestStuff/work.jpeg')
 
@@ -37,7 +36,6 @@ for i in l[:6] :
 
 print(StoneOrder)
 SkystonePosition = [i for i, value in enumerate(StoneOrder) if value == "Skystone"]
-
 print('The Skystone is located in positions: ' + str(int(SkystonePosition[0]) + 1) + ' and ' + str(int(SkystonePosition[1]) + 1))
 
 
