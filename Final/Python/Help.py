@@ -1,6 +1,6 @@
 import cv2 as cv
 from collections import defaultdict
-cvNet = cv.dnn.readNetFromTensorflow('/Users/Tinku/Desktop/ToBeDeleted/model.pb', '/Users/Tinku/Desktop/ToBeDeleted/model.pbtxt')
+cvNet = cv.dnn.readNetFromTensorflow('model.pb', 'model.pbtxt')
 
 cap = cv.VideoCapture(0)
 

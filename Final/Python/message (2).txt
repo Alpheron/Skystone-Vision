@@ -1,0 +1,54 @@
+public Mat processFrame(Mat inputFrame) {
+
+        final int IN_WIDTH = 300;
+        final int IN_HEIGHT = 300;
+        final double IN_SCALE_FACTOR = 1;
+        final double MEAN_VAL = 0;
+        final double THRESHOLD = 0.85;
+        // Get a new frame
+        Imgproc.cvtColor(inputFrame, inputFrame, Imgproc.COLOR_RGBA2RGB);
+        // Forward image through network.
+        Mat blob = Dnn.blobFromImage(inputFrame, IN_SCALE_FACTOR, new Size(IN_WIDTH, IN_HEIGHT), new Scalar(MEAN_VAL, MEAN_VAL, MEAN_VAL), true, false);
+        net.setInput(blob);
+        HashMap<Double, Integer> object_dict = new HashMap<>();
+        Mat detections = net.forward();
+        int cols = inputFrame.cols();
+        int rows = inputFrame.rows();
+        detections = detections.reshape(1, (int) detections.total() / 7);
+        for (int i = 0; i < detections.rows(); ++i) {
+            System.out.println(detections);
+            double confidence = detections.get(i, 2)[0];
+            if (confidence > THRESHOLD) {
+                int classId = (int) detections.get(i, 1)[0];
+                int left = (int) (detections.get(i, 3)[0] * cols);
+                int top = (int) (detections.get(i, 4)[0] * rows);
+                int right = (int) (detections.get(i, 5)[0] * cols);
+                int bottom = (int) (detections.get(i, 6)[0] * rows);
+                object_dict.put(confidence, left);
+                object_dict.put(confidence, top);
+                object_dict.put(confidence, right);
+                object_dict.put(confidence, bottom);
+                object_dict.put(confidence, classId);
+            }
+        }
+
+        List object_list = new ArrayList(object_dict.keySet());
+        Arrays.sort(new List[]{object_list}, Collections.reverseOrder());
+        for (int i=0; i != 6; i++) {
+            object_dict.get(object_list.get(i));
+            Imgproc.rectangle(inputFrame, new Point(left, top), new Point(right, bottom), new Scalar(0, 255, 0));
+//                String label = classNames[classId] + ": " + confidence;
+//                int[] baseLine = new int[1];
+//                Size labelSize = Imgproc.getTextSize(label, FONT_HERSHEY_SIMPLEX, 0.5, 1, baseLine);
+//                // Draw background for label.
+//                Imgproc.rectangle(inputFrame, new Point(left, top - labelSize.height),
+//                        new Point(left + labelSize.width, top + baseLine[0]),
+//                        new Scalar(255, 255, 255), Imgproc.FILLED);
+//                // Write class name and confidence.
+//                Imgproc.putText(inputFrame, label, new Point(left, top),
+//                        FONT_HERSHEY_SIMPLEX, 0.5, new Scalar(0, 0, 0));
+
+
+        }
+        return inputFrame;
+    }

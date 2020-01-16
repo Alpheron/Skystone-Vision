@@ -10,7 +10,7 @@ cvOut = cvNet.forward()
 numOfRect = 0
 for detection in cvOut[0,0,:,:]:
     score = float(detection[2])
-    if score > 0:
+    if score > .85:
         left = detection[3] * cols
         top = detection[4] * rows
         right = detection[5] * cols

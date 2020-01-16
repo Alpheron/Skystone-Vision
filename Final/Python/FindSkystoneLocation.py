@@ -1,6 +1,6 @@
 import cv2 as cv
 cvNet = cv.dnn.readNetFromTensorflow('/Users/Tinku/Desktop/RoboticsShit/Skystone-Vision/Final/image_tensor/PB_file/model.pb', '/Users/Tinku/Desktop/RoboticsShit/Skystone-Vision/Final/image_tensor/Pbtxt/model.pbtxt')
-img = cv.imread('/Users/Tinku/Desktop/TestStuff/work.jpeg')
+img = cv.imread('/Users/Tinku/Desktop/RoboticsShit/DataForFuture/StoneandSkystone/IMG_3380.jpeg')
 
 rows = img.shape[0]
 cols = img.shape[1]
@@ -10,7 +10,7 @@ objects_dict = {}
 StoneOrder = []
 for detection in cvOut[0,0,:,:]:
     score = float(detection[2])
-    if score > 0.75:
+    if score > 0.8:
         objectClass = detection[1]
         left = detection[3] * cols
         top = detection[4] * rows
@@ -33,9 +33,12 @@ for i in l[:6] :
     cv.rectangle(img, (int(objects_dict[i][0]), int(objects_dict[i][1])), (int(objects_dict[i][2]), int(objects_dict[i][3])), (23, 230, 210), thickness=5)
     cv.putText(img, detectedObject, (int(objects_dict[i][0]), int(objects_dict[i][1])), cv.FONT_HERSHEY_SIMPLEX, 5, (0,0,0), 10, cv.LINE_AA)
     StoneOrder.append(detectedObject)
+    print(objects_dict[i][1])
 
 print(StoneOrder)
+
 SkystonePosition = [i for i, value in enumerate(StoneOrder) if value == "Skystone"]
 print('The Skystone is located in positions: ' + str(int(SkystonePosition[0]) + 1) + ' and ' + str(int(SkystonePosition[1]) + 1))
-
+cv.imshow('img', img)
+cv.waitKey()
 
